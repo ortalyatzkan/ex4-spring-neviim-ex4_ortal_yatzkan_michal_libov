@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="row" style="background-color: aquamarine;">
+    <div class="col-1 "></div>
+    <div class="col-3 container">
+        <h1 style="color:white;">Book Store</h1>
+    </div>
+    <div class="col-4" >
+        <nav class="navbar navbar-light text-align center" >
+            <form th:action="@{/search}" th:object="${SearchName}" method="post" class="form-inline">
+                <input class="form-control mr-sm-2" th:field="*{searchName}"  type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
+    </div>
+    <div class="col-3" ></div>
+    <div class="col-1" >
+        <p>
+            <a th:href="@{/shopping-cart}" class="btn btn-primary mt-2" >
+            <span th:text="${amountInCart}"></span>
+            <i class="fas fa-shopping-cart ml-2"></i></a>
+        </p>
+    </div>
+</div>
+<div class="row mt-3">
+    <div th:each="book : ${discountedBooks}" class="card col-2 mx-auto">
+        <img th:src="${book.url}" class="card-img-top" alt="image of book" style="width: 100%; height:15vw; object-fit:cover;">
+        <div class="card-body">
+            <h5 class="card-title"><p th:text="${book.name}"></p></h5>
+            <span>Price:</span>
+            <p th:text="${book.price}"></p>
+            <span>Discount:</span>
+            <p th:text="${book.discount}"></p>
+            <a th:href="@{/persistToCart/{id}(id=${book.id})}" class="btn btn-outline-primary" >Add to the basket</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

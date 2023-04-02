@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Users</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <a th:href="@{/admin}" class="btn btn-primary" >Go Back</a>
+  <h1>Add new book:</h1>
+  <h2 class="mb-5">New User</h2>
+  <!-- not recommended: using GET controller <a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a> -->
+  <form action="#" th:action="@{/addbook}" th:object="${book}" method="post">
+    <div class="form-group col-md-6">
+
+      <label class="col-form-label">Name:</label>
+      <input type="text" th:field="*{name}"  class="form-control"  id="name" placeholder="Name">
+      <span  th:errors="*{name}" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6">
+      <label class="col-form-label">Price:</label>
+      <input type="text" class="form-control" th:field="*{price}" id="price" placeholder="price">
+      <span  th:errors="*{price}" class="text-danger"></span>
+
+    </div>
+    <div class="form-group col-md-6">
+      <label  class="col-form-label">Url:</label>
+      <input type="text" class="form-control" th:field="*{url}">
+      <span  th:errors="*{url}" class="text-danger"></span>
+    </div>
+    <div class="form-group col-md-6">
+      <label  class="col-form-label">Discount:</label>
+      <input type="text" class="form-control" th:field="*{discount}">
+      <span th:errors="*{discount}" class="text-danger"></span>
+
+    </div>
+    <div class="form-group col-md-6">
+      <label class="col-form-label">Quantity:</label>
+      <input type="text" class="form-control" th:field="*{quantity}">
+      <span th:errors="*{quantity}" class="text-danger" ></span>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mt-5">
+        <input type="submit" class="btn btn-primary" value="Add Book">
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>
